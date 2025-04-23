@@ -14,17 +14,19 @@ class HomeViewModel (private val repository: NetworkRepository) : ViewModel() {
     val networkResult = MutableStateFlow<String?>(null)
 
     init {
-        getFakeRequest()
+        getTestFakeRequest()
+        getProdFakeRequest()
     }
 
-//    override fun onCleared() {
-//        super.onCleared()
-//        homeComponent = null
-//    }
-
-    fun getFakeRequest() {
+    fun getTestFakeRequest() {
         viewModelScope.launch(Dispatchers.IO) {
             networkResult.tryEmit(repository.getTestNetworkResult())
+        }
+    }
+
+    fun getProdFakeRequest() {
+        viewModelScope.launch(Dispatchers.IO) {
+            networkResult.tryEmit(repository.getProdNetworkResult())
         }
     }
 

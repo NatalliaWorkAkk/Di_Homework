@@ -8,8 +8,10 @@ import retrofit2.Retrofit
 import javax.inject.Inject
 
 class NetworkRepositoryImpl @Inject constructor(
-    @Test private val testRetrofit: Retrofit,
-    @Prod private val prodRetrofit: Retrofit
+    @Test
+    private val testRetrofit: Retrofit,
+    @Prod
+    private val prodRetrofit: Retrofit
 ) : NetworkRepository {
 
     //    override suspend fun getNetworkResult() = withContext(Dispatchers.IO) {

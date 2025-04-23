@@ -7,15 +7,13 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Qualifier
-import javax.inject.Singleton
 
 @Module
 object RetrofitModule {
 
     @Provides
-    @Singleton
     @Prod
-    fun provideProdApi(): Retrofit {
+    fun provideProdRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://prod.com")
             .addConverterFactory(GsonConverterFactory.create())
@@ -30,9 +28,8 @@ object RetrofitModule {
     }
 
     @Provides
-    @Singleton
     @Test
-    fun provideTestApi(): Retrofit {
+    fun provideTestRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://test.com")
             .addConverterFactory(GsonConverterFactory.create())
